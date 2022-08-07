@@ -1,0 +1,2 @@
+$('.comment-table').html("<%= j(render partial: 'book_comments/comment', locals: {comments: @comment.book.book_comments}) %>");
+$('.comment-count').html("<%= j(render partial: 'book_comments/comment_count', locals: {book: @comment.book}) %>");

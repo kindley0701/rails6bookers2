@@ -1,0 +1,2 @@
+<!--これもviewみたいな扱い：@にしないと値渡せない．-->
+$('#favorite_btn<%= @book.id %>').html("<%= j(render partial: 'favorites/favorite-btn', locals: {book: @book}) %>");
