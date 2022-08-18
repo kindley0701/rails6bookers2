@@ -1,24 +1,11 @@
-# README
+# Bookers2(rails6)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Bookers2をRails6で実装．以下の機能を持つ．
 
-Things you may want to cover:
+###いいね機能
+###コメント機能
+###フォロー機能
 
-* Ruby version
+##branchに分けて，以下を実装．
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+###
