@@ -10,4 +10,8 @@ class Group < ApplicationRecord
     (image.attached?) ? image : 'no_image.jpg'
   end
 
+  def join?(user) #group.join?で使うと
+    group_users.include?(user) #group.group_users.include?になる．が，機能してない．あとこれだけ直せば良き．
+  end
+
 end
