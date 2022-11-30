@@ -1,24 +1,20 @@
-# README
+# 読書感想共有アプリ
+本の感想をシェアするアプリです．
+ユーザー登録後お使いいただけます．
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 各種バージョン
+ruby 3.1.2
+rails 6.1.4
+sqlite3 1.4
+その他Gemfileに記載あり．
 
-Things you may want to cover:
+## アプリケーションの動かし方
+bundle install
+rails db:migrate
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### 機能
+投稿機能
+ユーザー登録機能
+フォロー機能
+コメント機能
+いいね機能
