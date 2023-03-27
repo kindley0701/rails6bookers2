@@ -10,8 +10,8 @@ class Group < ApplicationRecord
     (image.attached?) ? image : 'no_image.jpg'
   end
 
-  def join?(user) #group.join?で使うと
-    group_users.include?(user) #group.group_users.include?になる．が，機能してない．あとこれだけ直せば良き．
+  def join?(user) #group.join?で使うとそのグループにそのユーザーが参加しているか確認できる
+    group_users.exists?(user_id: user.id) #exists?(カラム名: 値)でカラムがその値になっているレコードの存在確認
   end
 
 end
