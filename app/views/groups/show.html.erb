@@ -14,7 +14,9 @@
   		      <th></th>
   		      <th>グループ名</th>
   		      <th>紹介文</th>
+  		      <th>オーナー</th>
   		      <th>メンバー</th>
+  		      <th></th>
   		      <th></th>
   		    </tr>
   		  </thead>
@@ -27,8 +29,8 @@
             </td>
             <td><%= @group.name %></td>
             <td><%= @group.introduction %></td>
+            <td><%= @user.name %></td>
             <td>
-              <%= @user.name %><br>
               <% @group.group_users.each do |group_user| %>
                 <%= group_user.user.name %><br>
               <% end %>
