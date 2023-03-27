@@ -18,6 +18,7 @@
   		      <th>メンバー</th>
   		      <th></th>
   		      <th></th>
+  		      <th></th>
   		    </tr>
   		  </thead>
   		  <tbody>
@@ -38,16 +39,38 @@
             <% if @user == current_user %>
               <td><%= link_to 'Edit', edit_group_path(@group.id), class: "btn btn-sm btn-success" %></td>
               <td><%= link_to 'Destroy', group_path(@group.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
+              <td><%= link_to 'Notice an Event', new_group_notice_path(@group.id), class: 'btn btn-info'%></td>
             <% else %>
               <% if @group.join?(current_user) %>
                 <td><%= link_to 'Leave this group', group_group_users_path(@group.id), method: :delete, class: 'btn btn-danger' %></td>
                 <td></td>
+                <td></td>
               <% else %>
                 <td><%= link_to 'Join this group', group_group_users_path(@group.id), method: :create, class: 'btn btn-success' %></td>
+                <td></td>
                 <td></td>
               <% end %>
             <% end %>
           </tr>
+        </tbody>
+      </table>
+      <h2>Event Mail</h2>
+  		<table class='table'>
+  		  <thead>
+  		    <tr>
+  		      <th>配信日時</th>
+  		      <th>タイトル</th>
+  		      <th>本文</th>
+  		    </tr>
+  		  </thead>
+  		  <tbody>
+  		    <% @group.notices.each do |notice| %>
+      		  <tr>
+      		    <td><%= notice.created_at.strftime('%Y.%m.%d %H:%M') %></td>
+              <td><%= notice.title %></td>
+              <td><%= notice.body %></td>
+            </tr>
+          <% end %>
         </tbody>
       </table>
     </div>
