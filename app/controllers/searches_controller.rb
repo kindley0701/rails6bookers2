@@ -5,8 +5,10 @@ class SearchesController < ApplicationController
     @range = params[:range]#検索範囲の取得
     if @range == "User"#検索範囲による分岐
       @users = User.looks(params[:search], params[:word])#検索結果の取得
-    else
+    elsif @range == "Book"
       @books = Book.looks(params[:search], params[:word])#検索結果の取得
+    else
+      @books = Book.where(tag: params[:word])
     end
   end
 end
