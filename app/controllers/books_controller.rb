@@ -27,6 +27,7 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id])
+    @page = 'edit'
   end
 
   def update
@@ -47,7 +48,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :body)
+    params.require(:book).permit(:title, :body, :rate)
   end
 
   def ensure_correct_user
