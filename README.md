@@ -1,24 +1,6 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# 課題9b
+## 投稿数の集計
+### 要件と設計
+指定した日の投稿数を表示
+・日付検索の表示と検索日の投稿数の表示；users/show，users/_search，users#search
+・非同期化：users/search
