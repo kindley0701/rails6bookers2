@@ -10,3 +10,4 @@
   -メッセージの履歴を表示：messages#index(view)
   -メッセージ登録機能：messages#create
   -140文字制限：message.rb(model)
+  -非同期化：messages/_form，messages/_table，messages/create
