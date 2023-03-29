@@ -1,24 +1,7 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# 課題7c
+## グループ機能
+### 要件と設計
+グループの作成
+・グループの登録とオーナー登録：groups#new，groups#create，groups/new
+・グループの更新(オーナーのみ)：groups#edit，groups/edit，groups#update，groups_controller
+・グループ一覧ページ：users/index，groups/index，groups#index
