@@ -1,20 +1,6 @@
-# 読書感想共有アプリ
-本の感想をシェアするアプリです．
-ユーザー登録後お使いいただけます．
-
-## 各種バージョン
-ruby 3.1.2
-rails 6.1.4
-sqlite3 1.4
-その他Gemfileに記載あり．
-
-## アプリケーションの動かし方
-bundle install
-rails db:migrate
-
-### 機能
-投稿機能
-ユーザー登録機能
-フォロー機能
-コメント機能
-いいね機能
+# 課題6
+## いいね・コメント・フォロー機能
+### 要件と設計
+いいね・コメント・フォロー機能の非同期化
+・いいねの非同期化：favorites/_favorite-btn，favorites/create，favorites/destroy，books/_index，books/show
+・コメントの非同期化：book_comments/_comment，book_comments/_comment_count，book_comments/_comment_form
