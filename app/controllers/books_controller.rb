@@ -7,11 +7,21 @@ class BooksController < ApplicationController
     @user = @book.user
     @comments = @book.book_comments
     @comment = BookComment.new
+    view_count = ViewCount.find_by(book_id: @book.id, user_id: current_user.id)
+    unless view_count
+      ViewCount.create(book_id: @book.id, user_id: current_user.id)
+    end
   end
 
   def index
+    to  = Time.current.at_end_of_day #今日の終わりの時間
+    from  = (to - 6.day).at_beginning_of_day #今日を基準に6日前の始まりの時間
+    @books = Book.includes(:favorites). #includesメソッドって何の役割？
+      sort {|a,b| #これもよくわからん
+        b.favorites.where(created_at: from...to).size <=>
+        a.favorites.where(created_at: from...to).size
+      }
     @book = Book.new
-    @books = Book.all
   end
 
   def create
