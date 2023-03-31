@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :users
   root to: "homes#top"
@@ -17,6 +18,11 @@ Rails.application.routes.draw do
     get 'relationships/followers'
     post "search" => "users#search"
     resources :messages, only: [:index, :create]
+  end
+
+  resources :groups do
+    resource :group_users, only: [:create, :destroy]
+    resources :notices, only: [:new, :create, :show]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
