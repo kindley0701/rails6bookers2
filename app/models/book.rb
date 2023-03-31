@@ -26,4 +26,8 @@ class Book < ApplicationRecord
     end
   end
 
+
+  scope :created_day_before, -> (d) { where(created_at: d.day.ago.all_day) }
+
+
 end

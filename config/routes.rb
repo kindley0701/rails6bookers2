@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resource :relationships, only: [:create, :destroy]
     get 'relationships/followings'
     get 'relationships/followers'
+    post "search" => "users#search"
     resources :messages, only: [:index, :create]
   end
 

@@ -20,3 +20,4 @@ rails db:migrate
 いいね機能
 DM機能
 閲覧数
+投稿数の集計機能
