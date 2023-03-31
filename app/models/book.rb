@@ -6,6 +6,7 @@ class Book < ApplicationRecord
   # has_many :favorited_users, through: :favorites, source: :user
   validates :title,presence:true
   validates :body,presence:true,length:{maximum:200}
+  validates :rate, presence: true
 
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)

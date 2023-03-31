@@ -22,6 +22,13 @@ class BooksController < ApplicationController
         a.favorites.where(created_at: from...to).size
       }
     @book = Book.new
+    if params[:sort] == 'newer'
+      @books = Book.order(created_at: 'DESC')
+    elsif params[:sort] == 'higher'
+      @books = Book.order(rate: 'DESC')
+    else
+      @books = Book.all
+    end
   end
 
   def create
@@ -37,6 +44,7 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id])
+    @page = 'edit'
   end
 
   def update
@@ -57,7 +65,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :body)
+    params.require(:book).permit(:title, :body, :rate, :tag)
   end
 
   def ensure_correct_user

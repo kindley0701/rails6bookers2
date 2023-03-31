@@ -62,6 +62,11 @@
         <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backward_match"], ["部分一致","partial_match"]]) %><!--検索方法選択-->
         <%= f.submit "検索", class: "btn btn-primary" %>
       <% end %>
+      <%= form_with url: search_path, local: true, method: :get do |f| %>
+        <%= f.text_field :word %><!--検索フォーム-->
+        <%= f.hidden_field :range, :value => 'Tag' %><!--検索モデル範囲-->
+        <%= f.submit "タグ検索", class: "btn btn-primary" %>
+      <% end %>
     </div>
   <% end %>
 </header>
