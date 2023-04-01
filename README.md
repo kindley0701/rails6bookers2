@@ -19,23 +19,23 @@
 グループにジョインすることでオーナーからのアナウンスを受け取ることができます．また，アナウンスを受け取った際，ご登録のメールアドレスに通知が届きます．
 
 ## 開発言語等
-Ruby
-Rails
-Javascript
-HTML/CSS
+Ruby，Rails，Javascript，HTML/CSS
 
 ## 各種バージョン
-ruby 3.1.2p20
-rails 6.1.7.3
-node v16.17.0
-yarn 1.22.19
-ImageMagick 7.1.1-5
-sqlite3 3.41.2
-その他Gemfileに記載あり．
+ruby 3.1.2p20<br>
+rails 6.1.7.3<br>
+node v16.17.0<br>
+yarn 1.22.19<br>
+ImageMagick 7.1.1-5<br>
+sqlite3 3.41.2<br>
+その他Gemfileに記載あり．<br>
 
 ## アプリケーションの動かし方
+#### アプリのダウンロード(クローン)
 git clone -b main https://github.com/kindley0701/rails6bookers2.git
-bundle install
-rails db:migrate
-yarn install
+#### アプリの準備
+bundle install<br>
+rails db:migrate<br>
+yarn install<br>
+#### アプリの起動
 rails s
