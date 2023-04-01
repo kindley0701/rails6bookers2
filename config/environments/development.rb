@@ -45,7 +45,7 @@ Rails.application.configure do
     address:              'smtp.gmail.com',
     domain:               'gmail.com',
     user_name:            'koyanagi.kazuki.infratop@gmail.com',
-    password:             'gsghvzvawvglkeyu',
+    password:             'azrsbuctbeeiliof',
     authentication:       'login',
     enable_starttls_auto: true
   }
