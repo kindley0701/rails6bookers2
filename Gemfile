@@ -61,12 +61,14 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 
+# jqueryの導入
 gem 'jquery-rails'
 
 gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
 
+# デバッグ用
 gem 'pry-byebug'
 
 gem 'dotenv-rails'
@@ -74,4 +76,8 @@ group :production do
   gem 'mysql2'
 end
 
+# 緯度経度の自動登録
 gem "geocoder"
+
+# 郵便番号から住所を自動入力
+gem 'jp_prefecture'
