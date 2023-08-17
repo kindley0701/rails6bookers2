@@ -26,10 +26,10 @@
      });
   }
 </script>
-
+<script async defer src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap"></script>
 <style type="text/css">
   #map { height: 200px;
-         width: 90%;}
+         width: 100%;}
 </style>
 
 <div id="map"></div>
