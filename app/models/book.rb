@@ -8,6 +8,9 @@ class Book < ApplicationRecord
   validates :body,presence:true,length:{maximum:200}
   validates :rate, presence: true
 
+  # タグ追加機能用
+  acts_as_taggable
+
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end

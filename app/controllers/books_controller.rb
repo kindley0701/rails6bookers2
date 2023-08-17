@@ -65,7 +65,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :body, :rate, :tag)
+    params.require(:book).permit(:title, :body, :rate, :tag, :tag_list) #tagはタグ１つのみの場合のみ，tag_listはタグ追加機能用の配列．
   end
 
   def ensure_correct_user

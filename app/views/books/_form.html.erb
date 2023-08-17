@@ -8,8 +8,8 @@
     <%= f.text_area :body, class: 'form-control book_body' %>
   </div>
   <div class="form-group">
-    <%= f.label :Tag %>
-    <%= f.text_field :tag, class: 'form-control' %>
+    <%= f.label :TagList %>
+    <%= f.text_field :tag_list, value: book.tag_list.join(','), class: 'form-control' %><!--配列として入力可-->
   </div>
   <div class="form-group", id='star'>
     <%= f.label :Rate %>
