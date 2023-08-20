@@ -5,6 +5,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @books = @user.books
     @book = Book.new
+    @search = Book.ransack(params[:q])
   end
 
   def index

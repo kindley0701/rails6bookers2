@@ -12,6 +12,10 @@ class Book < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
 
+  def self.ransackable_attributes(auth_object = nil)
+    ["id", "title", "body", "tag", "created_at", "updated_at"]
+  end
+
   #検索方法ごとの分岐
   def self.looks(search, word)
     if search == "perfect_match"

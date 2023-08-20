@@ -7,8 +7,10 @@ class SearchesController < ApplicationController
       @users = User.looks(params[:search], params[:word])#検索結果の取得
     elsif @range == "Book"
       @books = Book.looks(params[:search], params[:word])#検索結果の取得
-    else
+    elsif @range == "Tag"
       @books = Book.where(tag: params[:word])
+    else
+      @books = @search.result
     end
   end
 end
