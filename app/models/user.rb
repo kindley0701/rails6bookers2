@@ -32,6 +32,14 @@ class User < ApplicationRecord
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
   end
 
+  def self.guest
+    find_or_create_by!(name: 'guest', email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      # user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
+      # 例えば name を入力必須としているならば， user.name = "ゲスト" なども必要
+    end
+  end
+
   # フォローしたときの処理
   def follow(user_id)
     relationships.create(followed_id: user_id)
