@@ -1,6 +1,8 @@
+<script async defer src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap"></script>
 <script type="text/javascript">
   function initMap() {
     // latitude,longitudeから位置を特定
+    var geocoder = new google.maps.Geocoder()
     var test ={lat: <%= user.latitude %>, lng: <%= user.longitude %>};
     var map = new google.maps.Map(document.getElementById('map'), {
               zoom: 15,
@@ -16,7 +18,7 @@
 
     // Map上の指定した位置にピンを挿して表示する
     var marker = new google.maps.Marker({
-                  position:test,
+                  position: test,
                   map: map,
                   title: contentString
                  });
@@ -26,7 +28,6 @@
      });
   }
 </script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap"></script>
 <style type="text/css">
   #map { height: 200px;
          width: 100%;}

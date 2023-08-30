@@ -29,7 +29,7 @@ class User < ApplicationRecord
 
   # 緯度経度の自動登録
   geocoded_by :address
-  after_validation :geocode, if: :address_changed?
+  after_validation :geocode
 
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'no_image.jpg'

@@ -26,7 +26,8 @@
   <div class='row'>
     〒<%= user.postal_code %><br>
     <%= user.address %>
-    <%= render 'map', user: user %>
+    (<%= user.latitude %>, <%= user.longitude %>)
+    <%= render 'users/map', user: user %>
   </div>
 <% else %>
   <div class="row">
