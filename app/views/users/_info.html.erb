@@ -22,6 +22,7 @@
     <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
       <i class="fas fa-user-cog"></i>
     <% end %>
+    <%= render 'users/map', user: user %>
   <% else %>
     <% if current_user.following?(user) %>
     <div class="col-7">
