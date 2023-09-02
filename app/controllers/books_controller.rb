@@ -12,10 +12,10 @@ class BooksController < ApplicationController
   def index
     to  = Time.current.at_end_of_day #今日の終わりの時間
     from  = (to - 6.day).at_beginning_of_day #今日を基準に6日前の始まりの時間
-    @books = Book.includes(:favorites). #includesメソッドって何の役割？
-      sort {|a,b| #これもよくわからん
-        b.favorites.where(created_at: from...to).size <=>
-        a.favorites.where(created_at: from...to).size
+    @books = Book.includes(:favorites). #Bookのデータと紐づくFavoriteのデータをまとめて取り出す．
+      sort {|a,b| # バブルソート(隣接比較)による並び替え
+        b.favorites.where(created_at: from...to).size <=> #いいねの数が多いほうから
+        a.favorites.where(created_at: from...to).size     #少ないほうへ
       }
     @book = Book.new
   end
