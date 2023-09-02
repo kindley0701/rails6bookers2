@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
 
-  def index
+  def index #相手とのメッセージ一覧(=DM部屋)
     @user = User.find(params[:user_id]) #DM相手
     room_id = current_user.room_users.pluck(:room_id) #ログインユーザーのDM部屋のidを一覧で取得
     room_user = @user.room_users.find_by(room_id: room_id) #その中から該当のDM相手とのDM部屋を検索
