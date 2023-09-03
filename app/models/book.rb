@@ -24,6 +24,7 @@ class Book < ApplicationRecord
     end
   end
 
+  # 作成日が特定範囲にあるデータを検索する
   scope :created_today, -> { where(created_at: Time.zone.now.all_day) }
   scope :created_yesterday, -> { where(created_at: 1.day.ago.all_day) }
   scope :created_this_week, -> { where(created_at: 6.day.ago.beginning_of_day..Time.zone.now.end_of_day) }
