@@ -36,14 +36,13 @@
       </div>
       <div>
         <!--これどこにTurbolinksの無効化を用いるんだ？-->
-        <canvas id=myChart></canvas>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <canvas id=myChart></canvas><!--グラフ描画エリアの確保-->
         <script>
-          var ctx = document.getElementById('myChart');
+          var ctx = document.getElementById('myChart'); //id指定で描画場所を指定
           var myChart = new Chart(ctx, {
-              type: 'bar',
+              type: 'bar', //グラフタイプの選択：棒グラフ
               data: {
-                  labels: [
+                  labels: [ //各棒のラベルを付ける(左の棒のラベルから順に記載)
                     <% for i in 0..4 %>
                       '<%= 6-i %>days ago',
                     <% end %>
@@ -51,21 +50,21 @@
                       'today'
                   ],
                   datasets: [{
-                      label: 'books',
-                      data: [
+                      label: 'books', //凡例の命名
+                      data: [ //表示するデータを選択(左の棒の値から順に記載)
                         <% for i in 0..6 do %>
                           <%= @books.created_day_before(6-i).count %>,
                         <% end %>
                       ],
-                      backgroundColor: 'rgba(255, 99, 132, 1)',
-                      borderColor: 'rgba(255, 99, 132, 1)',
-                      borderWidth: 1
+                      backgroundColor: 'rgba(255, 99, 132, 1)', //棒の色
+                      borderColor: 'rgba(255, 99, 132, 1)', //棒の枠の色
+                      borderWidth: 1 //棒の枠の幅
                   }]
               },
               options: {
                   scales: {
-                      y: {
-                          beginAtZero: true
+                      y: { //y軸について
+                          beginAtZero: true //下限を0にする設定
                       }
                   }
               }
