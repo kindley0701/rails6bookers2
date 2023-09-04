@@ -38,16 +38,16 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    port:                 587,
-    address:              'smtp.gmail.com',
-    domain:               'gmail.com',
-    user_name:            ENV['SEND_MAIL'],
-    password:             ENV['GMAIL_SPECIFIC_PASSWORD'],
-    authentication:       'login',
-    enable_starttls_auto: true
+  config.action_mailer.raise_delivery_errors = true  #メール送信失敗時にエラーを表示する
+  config.action_mailer.delivery_method = :smtp #メールの送信方法をSMTPに設定
+  config.action_mailer.smtp_settings = { #SMTPの詳細設定
+    port:                 587,  #port番号の指定
+    address:              'smtp.gmail.com',  #サーバーのホスト名の設定
+    domain:               'gmail.com',  #HELOドメイン
+    user_name:            ENV['SEND_MAIL'], #送信に使用するGmailアカウント
+    password:             ENV['GMAIL_SPECIFIC_PASSWORD'], #送信に使用するGmailパスワード
+    authentication:       'login', #認証方法の設定
+    enable_starttls_auto: true #TLS認証を使用するか
   }
 
   # Print deprecation notices to the Rails logger.
@@ -83,9 +83,7 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   # config.hosts << "a8c9cb2b77b24968bf1f0967084f4a3f.vfs.cloud9.us-east-1.amazonaws.com"
-  config.hosts << "49e69874be6d4ef3a0718e9b15430b98.vfs.cloud9.us-east-1.amazonaws.com"
-  config.hosts << "c82e2a7709f54c55b75bc6c1b45097aa.vfs.cloud9.us-east-1.amazonaws.com"
-  config.hosts << "998f5956abfd408787b212beb3878ecc.vfs.cloud9.us-east-1.amazonaws.com"
+  config.hosts << "f71ca16a6e9746cbbe322bfaa8cf1f13.vfs.cloud9.ap-northeast-1.amazonaws.com"
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
 end

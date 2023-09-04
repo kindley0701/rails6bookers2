@@ -9,9 +9,9 @@ class NoticesController < ApplicationController
     @group = Group.find(params[:group_id])
     @notice.group_id = @group.id
     if @notice.save
-      @group.group_users.each do |group_user|
+      @group.group_users.each do |group_user| #グループ内のメンバーそれぞれに対してメールの送信を行っていく．
         user = User.find(group_user.user_id)
-        ContactMailer.send_when_owner_announce(user, @group, @notice).deliver
+        ContactMailer.send_when_owner_announce(user, @group, @notice).deliver #メソッドはContactMailerで定義．deliverでメール送信実行
       end
       redirect_to group_notice_path(@group.id, @notice.id)
     else

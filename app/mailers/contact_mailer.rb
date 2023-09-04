@@ -4,5 +4,5 @@ class ContactMailer < ApplicationMailer
     @group = group #発信グループ
     @notice = notice #発信内容
     mail to: user.email, subject: '【Bookers2】 メッセージが届きました'
-  end
+  end #読み終えたらメールのviewへ
 end
