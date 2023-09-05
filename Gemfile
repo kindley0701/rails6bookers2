@@ -70,9 +70,9 @@ gem "net-imap"
 gem 'pry-byebug'
 
 gem 'dotenv-rails'
-group :production do
-  gem 'mysql2'
-end
+# group :production do
+#   gem 'mysql2'
+# end
 
 # タグ追加機能
 gem 'acts-as-taggable-on', '~> 9.0'
