@@ -70,9 +70,9 @@ gem "net-imap"
 gem 'pry-byebug'
 
 gem 'dotenv-rails'
-group :production do
-  gem 'mysql2'
-end
+# group :production do
+#   gem 'mysql2'
+# end
 
 # 検索機能
 gem 'ransack'
