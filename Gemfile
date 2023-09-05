@@ -70,9 +70,9 @@ gem "net-imap"
 gem 'pry-byebug'
 
 gem 'dotenv-rails'
-group :production do
-  gem 'mysql2'
-end
+# group :production do
+#   gem 'mysql2'
+# end
 
 # 日本語化
 gem 'rails-i18n'
