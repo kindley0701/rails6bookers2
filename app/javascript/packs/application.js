@@ -8,16 +8,19 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "jquery"
+require("jquery")
 import "popper.js"
 import "bootstrap"
 import '@fortawesome/fontawesome-free/js/all';
 import "../stylesheets/application"
+
+// window.$ = window.jQuery = require('jquery');
+require('packs/raty')
+
+//CDNでjqueryを読んでるからどこでも良さそう．
 import "./slick"
 require("./slick")
 
 Rails.start()
 // Turbolinks.start()
 ActiveStorage.start()
-
-window.$ = window.jQuery = require('jquery');
-require('packs/raty')

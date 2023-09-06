@@ -1,14 +1,11 @@
 /* global $ */
 $(function () {
   $(".slider").slick({
-    variableWidth: true,
-    adaptiveHeight: true,
-    centerMode: true,
-    focusOnSelect: true,
-    arrows: false,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-angle-left"></i></button>',
-    nextArrow: '<button type="button" class="slick-next"><i class="fas fa-angle-right"></i></button>',
+    variableWidth: true, //幅の自動調節・統一
+    adaptiveHeight: true, //高さの自動調節・統一
+    centerMode: true, //画像の中央寄せ
+    dots: true, //ドットあり
+    autoplay: true, //自動切換えにするか
+    autoplaySpeed: 3000, //切り替えスピード(ミリ秒)
   });
 });

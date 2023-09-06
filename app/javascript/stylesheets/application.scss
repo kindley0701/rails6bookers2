@@ -3,13 +3,18 @@
 
 .slick-prev,
 .slick-next {
-  position: absolute;
-  top: 50%; /* 上から中央に配置 */
-  transform: translateY(-50%); /* 垂直方向に中央揃え */
-  font-size: 24px; /* ボタンのフォントサイズを調整 */
-  z-index: 1; /* スライドよりも手前に表示 */
+  font-size: 24px; // ボタンのフォントサイズを調整
+  z-index: 1; // スライドよりも手前に表示
 }
 
-.slick-next {
-  right: 0%;
+.slick-prev { //前の矢印
+  left: 0%; //矢印が画像の外に行かないように
+}
+
+.slick-next { //後ろの矢印
+  right: 0%; //矢印が画像の外に行かないように
+}
+
+.slider, .slider-item {
+  width: 400px; // スライダーも画像もサイズ変更
 }
