@@ -5,7 +5,8 @@
   function initMap() {
     // 位置情報を取得
     navigator.geolocation.getCurrentPosition(function (position) {
-    LatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+      // 座標の取得
+      LatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
       // 取得した位置情報を中心に表示
       map = new google.maps.Map(document.getElementById('map'), {
@@ -19,14 +20,14 @@
         content: contentString
       });
 
-      var marker = new google.maps.Marker({
+      var marker = new google.maps.Marker({//ピンの設定
                   position: LatLng, // ピンの位置
                   map: map, // 表示する地図情報
                   title: contentString //表示する題目
       });
 
-      marker.addListener('click', function() {
-        infowindow.open(map, marker);
+      marker.addListener('click', function() {//ピンに対するアクションの設定
+        infowindow.open(map, marker);//吹き出しを表示
       });
 
     });
