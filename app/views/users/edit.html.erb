@@ -1,15 +1,13 @@
 <script>
   $(function() {
-    $(document).on('turbolinks:load', () => {　//turbolinks適応させないため
-      $('#user_postal_code').jpostal({　  // #フォームに付与されているid名を記載
-        postcode : [   //カラム名に関わらずpostcode
-          '#user_postal_code'  // #フォームに付与されているid名を記載(検証ツールで確認可)
-        ],
-        address: {
-          "#user_address": "%3%4%5", // # 都道府県市区町村と町域が入力される
-                                     // # フォームに付与されているid名を記載
-        }
-      });
+    $('#user_postal_code').jpostal({　  // #フォームに付与されているid名を記載
+      postcode : [   //カラム名に関わらずpostcode
+        '#user_postal_code'  // #フォームに付与されているid名を記載(検証ツールで確認可)
+      ],
+      address: {
+        "#user_address": "%3%4%5", // # フォームに付与されているid名を記載
+        // # 都道府県：%3，市区町村：%4，町域：%5がまとめて入力される
+      }
     });
   });
 </script>

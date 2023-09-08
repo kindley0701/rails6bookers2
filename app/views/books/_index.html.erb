@@ -26,14 +26,11 @@
         <td>
           <div id="star-rate<%= book.id%>"></div>
             <script>
-              $('#star-rate<%= book.id%>').raty({
-                size      : 36,
-                starOff   : '<%= asset_path('star-off.png') %>',
-                starOn    : '<%= asset_path('star-on.png') %>',
-                half      : false,
-
+              raty(document.getElementById('star-rate<%= book.id%>'), {
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
                 readOnly: true,
-                score: <%= book.rate %>,
+                score: <%= book.rate ||= 0 %>
               });
             </script>
           </div>

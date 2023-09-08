@@ -21,20 +21,17 @@
 
   <!-- 評価javascript -->
   <script>
-  $('#star').raty({
-    size     : 36,
-    starOff:  '<%= asset_path('star-off.png') %>',
-    starOn : '<%= asset_path('star-on.png') %>',
-    half: false,
-
-    <% if current_page?("/books/#{book.id}/edit") %>
-      readOnly: true,
-      score: <%= book.rate %>,
-    <% else %>
-      scoreName: 'book[rate]',
-    <% end %>
-
-  });
+    // raty(要素指定，オプション)
+    raty(document.getElementById('star'), {
+        starOn: "<%= asset_path('star-on.png') %>",
+        starOff: "<%= asset_path('star-off.png') %>",
+        <% if action_name == 'edit' %> // editアクションのとき
+          readOnly: true,
+          score: <%= book.rate ||= 0 %> //nilなら0を返す
+        <% else %> //入力フォームの場合
+          scoreName: 'book[rate]' //モデルとカラムの指定
+        <% end %>
+    });
   </script>
 
 <% end %>

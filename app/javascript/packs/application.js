@@ -13,9 +13,16 @@ import "bootstrap"
 import '@fortawesome/fontawesome-free/js/all';
 import "../stylesheets/application"
 
+// raty.jsの導入
+import Raty from "./raty.js"
+
+// ratyという関数の導入・宣言
+window.raty = function(elem,opt){ //window.で全ページに対して定義
+    var raty =  new Raty(elem,opt) //raty.jsからRaty関数の呼び出し．
+    raty.init(); //初期化
+    return raty; //ratyを返す．
+}
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
-
-window.$ = window.jQuery = require('jquery');
-require('packs/raty')
