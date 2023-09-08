@@ -61,7 +61,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 
-gem 'jquery-rails'
+# gem 'jquery-rails'
 
 gem "net-smtp"
 gem "net-pop"
@@ -70,7 +70,7 @@ gem "net-imap"
 gem 'pry-byebug'
 
 gem 'dotenv-rails'
-group :production do
-  gem 'mysql2'
-end
+# group :production do
+#   gem 'mysql2'
+# end
 
