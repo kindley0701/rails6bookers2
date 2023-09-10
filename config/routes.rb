@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :users
   root to: "homes#top"
@@ -25,5 +24,6 @@ Rails.application.routes.draw do
     resources :notices, only: [:new, :create, :show]
   end
 
+  get 'maps' => 'maps#index', as: 'maps'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

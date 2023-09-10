@@ -1,0 +1,84 @@
+<!--ここで読み込まないと他のページでもinitMapを呼び出してしまいエラーになる-->
+<script async defer src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap"></script>
+
+<script type="text/javascript">
+  function initMap() {
+    // latitude,longitudeから位置を特定
+    var geocoder = new google.maps.Geocoder()
+
+    //位置情報が取得できれば，第一引数position{}を実行
+    navigator.geolocation.getCurrentPosition(function (position) {
+      //座標の取得
+      var myHome = {lat: <%= user.latitude %>, lng: <%= user.longitude %>}; //住所
+      var currentLocation = {lat: position.coords.latitude, lng: position.coords.longitude}; //現在地
+
+      //2点の中間点の算出：mapの中心に設定する
+      var center = {lat: (myHome.lat+currentLocation.lat)/2, lng: (myHome.lng+currentLocation.lng)/2};
+
+      //地図の取得と表示
+      var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 12,
+                center: center
+                });
+
+      //地図にTransitLayer(交通機関地図)を適用：他に道路地図や自転車地図が存在
+      var trafficLayer = new google.maps.TrafficLayer();
+      trafficLayer.setMap(map);
+
+      //検索値
+      var request = {
+        origin:      currentLocation, //出発地
+        destination: myHome, //目的地
+        // waypoints: 配列,// 経由地点
+        travelMode:  google.maps.TravelMode.DRIVING //移動手段
+      };
+
+      //ルート検索：requestに基づいて検索，検索結果はresponseに値が入る．statusでresponseに値が入っているかを判別する．
+      new google.maps.DirectionsService().route(request, function(response, status) {
+        //responseに値が入っているかを確認
+        if (status == google.maps.DirectionsStatus.OK) {
+          //地図の描画
+          new google.maps.DirectionsRenderer({
+            // オプションの設定
+            map: map, //地図
+            draggable: true, //ルートを動かせるようになる
+            // suppressMarkers : true, //マーカーの非表示
+            polylineOptions: { // 描画される線についての設定
+              strokeColor: '#00ffdd', //ルート表示の色
+              strokeOpacity: 1, //不透明°
+              strokeWeight: 3 //太さ
+            }
+          }).setDirections(response);//地図にルートを表示
+          
+          // ルート情報の取得
+          const route = response.routes[0];
+
+          // ビューのid='directions-panel'の部分に埋め込む
+          const summaryPanel = document.getElementById("directions-panel");
+          summaryPanel.innerHTML = ""; //html形式で記述
+
+          // 埋め込む記述を追加：各地点間の距離・時間を表示
+          for (let i = 0; i < route.legs.length; i++) {
+            const routeSegment = i + 1;
+            summaryPanel.innerHTML += "<tr><th colspan='2'>Route Segment: " + routeSegment + "</th></tr>"; //何区間目
+            summaryPanel.innerHTML += "<tr><th>現在地</th><td>" + route.legs[i].start_address + "</td></tr>"; //開始点
+            summaryPanel.innerHTML += "<tr><th>↓</th><td>↓</td></tr>"; //下矢印
+            summaryPanel.innerHTML += "<tr><th>自宅</th><td>" + route.legs[i].end_address + "</td></tr>"; //終点
+            summaryPanel.innerHTML += "<tr><th>距離</th><td>" + route.legs[i].distance.text + "</td></tr>"; //距離
+            summaryPanel.innerHTML += "<tr><th>所要時間</th><td>" + route.legs[i].duration.text + "</td></tr>"; //時間
+          }
+        }
+      });
+
+    });
+  }
+</script>
+<style type="text/css">
+  #map { height: 400px;
+         width: 100%;}
+</style>
+
+<!--地図の表示-->
+<div id="map"></div>
+<!--ルート情報の表示-->
+<table id="directions-panel" class="table text-center"></table>
