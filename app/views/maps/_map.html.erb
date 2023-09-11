@@ -1,10 +1,5 @@
-<!--ここで読み込まないと他のページでもinitMapを呼び出してしまいエラーになる-->
-<script async defer src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap"></script>
-
 <script type="text/javascript">
   function initMap() {
-    // latitude,longitudeから位置を特定
-    var geocoder = new google.maps.Geocoder()
 
     //位置情報が取得できれば，第一引数position{}を実行
     navigator.geolocation.getCurrentPosition(function (position) {
@@ -16,10 +11,7 @@
       var center = {lat: (myHome.lat+currentLocation.lat)/2, lng: (myHome.lng+currentLocation.lng)/2};
 
       //地図の取得と表示
-      var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 12,
-                center: center
-                });
+      var map = new google.maps.Map(document.getElementById('map'));
 
       //地図にTransitLayer(交通機関地図)を適用：他に道路地図や自転車地図が存在
       var trafficLayer = new google.maps.TrafficLayer();
@@ -49,7 +41,7 @@
               strokeWeight: 3 //太さ
             }
           }).setDirections(response);//地図にルートを表示
-          
+
           // ルート情報の取得
           const route = response.routes[0];
 
@@ -69,13 +61,16 @@
           }
         }
       });
-
+      // init();
     });
   }
 </script>
 <style type="text/css">
-  #map { height: 400px;
-         width: 100%;}
+  #map {
+    height: 400px;
+    width: 100%;
+    margin:0 auto;
+  }
 </style>
 
 <!--地図の表示-->
