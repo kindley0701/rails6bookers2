@@ -74,3 +74,8 @@ gem 'dotenv-rails'
 #   gem 'mysql2'
 # end
 
+#楽天API
+gem 'rakuten_web_service'
+
+#ページネーション
+gem 'kaminari'

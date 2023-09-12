@@ -11,4 +11,19 @@ class SearchesController < ApplicationController
       @books = Book.where(tag: params[:word])
     end
   end
+
+  def index
+    @book = Book.new
+    # @range = params[:range]
+    @word = params[:word]
+    @page = params[:page] ||= 1
+
+    if @word.nil?
+      @books = []
+    else
+      @books = RakutenWebService::Books::Book.search(title: @word, page: @page)
+      @total_pages = @books.response.page_count
+      @count = @books.response.count
+    end
+  end
 end
