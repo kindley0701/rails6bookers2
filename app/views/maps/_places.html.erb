@@ -1,0 +1,65 @@
+<input type="text" size="55" id="search-form" value="池袋駅付近のカフェ" />
+<input type="button" size="55" value="検索" onClick="SearchGo()" /><!--ボタンを押すとSearchGo()が起動-->
+<div id="map_canvas" style="width: 100%; height: 400px;"></div>
+
+<script>
+  var myMap;
+  var service;
+
+  // 入力キーワードと表示範囲を設定
+  function SearchGo() {
+      var initPos = new google.maps.LatLng(35.689487,139.691706);//検索結果がなかった時の中心の設定
+      var mapOptions = { //検索結果がなかった時の設定
+          center : initPos, //中心
+          zoom: 5, //拡大率
+          mapTypeId : google.maps.MapTypeId.ROADMAP //地図の種類
+      };
+      // #map_canvas要素にMapクラスの新しいインスタンスを作成
+      myMap = new google.maps.Map(document.getElementById("map_canvas"), mapOptions); //地図を表示する箇所とオプションの設定
+      service = new google.maps.places.PlacesService(myMap); //施設検索のオブジェクト生成
+      // input要素に入力されたキーワードを検索の条件に設定
+      var myword = document.getElementById("search-form"); //入力値を取得するフォームの指定
+      var request = {
+          query : myword.value, //入力値の取得
+          radius : 5000, //施設検索の半径[m]指定
+          location : myMap.getCenter(), //施設検索の中心地の指定
+      };
+      service.textSearch(request, result_search); //検索の実行：result_searchの呼び出し
+  }
+
+  // 検索の結果を受け取る
+  function result_search(results, status) {
+      var bounds = new google.maps.LatLngBounds(); //実行結果から地図表示の範囲を設定するためのオブジェクト
+      for(var i = 0; i < results.length; i++){ //検索ヒット数だけ繰り返し
+          //service.getDetails({検索内容},function(検索結果,status){実行内容});の形：詳細情報の検索
+          service.getDetails({
+            //どの施設から何の情報を得たいのか指定
+            placeId: results[i].place_id, //施設の指定
+            fields: ['url','geometry','name'] //受け取りたい値の指定
+          },function(place, status){
+            createMarker({ //マーカーの設置と詳細の設定：下のcreateMerkerの呼び出し
+                position : place.geometry.location, //マーカーの位置
+                text : `<a href='${ place.url }'>${ place.name }</a>`, //表示するテキスト：実際のGoogleMapのUrlに飛べるようにした
+                map : myMap //どの地図に表示するか
+            });
+          });
+          bounds.extend(results[i].geometry.location); //検索結果が地図に収まるように設定
+      }
+      myMap.fitBounds(bounds);//全結果を地図に収めるように設定
+  }
+
+  // 該当する位置にマーカーを表示
+  function createMarker(options) {
+      // Markerクラスのオブジェクトmarker：マーカーの設置
+      var marker = new google.maps.Marker(options);
+      // 各施設の吹き出し(情報ウインドウ)に表示させる処理
+      var infoWnd = new google.maps.InfoWindow();
+      infoWnd.setContent(options.text);
+      // addListenerメソッドを使ってイベントリスナーを登録：クリックしたら吹き出しが出てくる
+      google.maps.event.addListener(marker, 'click', function(){
+          infoWnd.open(myMap, marker);
+      });
+      return marker;
+  }
+
+</script>
