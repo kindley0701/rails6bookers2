@@ -376,7 +376,7 @@ Style/StringConcatenation:
     - 'spec/system/02_after_login_spec.rb'
     - 'spec/system/03_finishing_touches_spec.rb'
 
-# Offense count: 221
+# Offense count: 225
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyle, ConsistentQuotesInMultiline.
 # SupportedStyles: single_quotes, double_quotes
