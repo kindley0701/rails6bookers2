@@ -23,11 +23,11 @@
           </thead>
           <tbody>
             <tr>
-              <td><%= @today_books.count %></td>
-              <td><%= @yesterday_books.count %></td>
+              <td><%= @books.created_today.count %></td>
+              <td><%= @books.created_yesterday.count %></td>
               <td>
-                <% if @yesterday_books.count != 0 %>
-                  <% day_rate = @today_books.count / @yesterday_books.count.to_f %>
+                <% if @books.created_yesterday.count != 0 %>
+                  <% day_rate = @books.created_today.count / @books.created_yesterday.count.to_f %>
                   <%= (day_rate * 100).round %>%
                 <% else %>
                   -
@@ -46,11 +46,11 @@
           </thead>
           <tbody>
             <tr>
-              <td><%= @this_week_books.count %></td>
-              <td><%= @last_week_books.count %></td>
+              <td><%= @books.created_this_week.count %></td>
+              <td><%= @books.created_last_week.count %></td>
               <td>
-                <% if @last_week_books.count != 0 %>
-                  <% week_rate = @this_week_books.count / @last_week_books.count.to_f %>
+                <% if @books.created_last_week.count != 0 %>
+                  <% week_rate = @books.created_this_week.count / @books.created_last_week.count.to_f %>
                   <%= (week_rate * 100).round %>%
                 <% else %>
                   -
@@ -59,6 +59,65 @@
             </tr>
           </tbody>
         </table>
+      </div>
+      <div>
+        <h2>7日分の投稿数</h2>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>6日前</th>
+              <th>5日前</th>
+              <th>4日前</th>
+              <th>3日前</th>
+              <th>2日前</th>
+              <th>1日前</th>
+              <th>今日</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <% for i in 0..6 do %>
+                <td><%= @books.created_day_before(6-i).count %></td>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <canvas id=myChart></canvas><!--グラフ描画エリアの確保-->
+        <script>
+          var ctx = document.getElementById('myChart'); //id指定で描画場所を指定
+          var myChart = new Chart(ctx, {
+              type: 'bar', //グラフタイプの選択：棒グラフ
+              data: {
+                  labels: [ //各棒のラベルを付ける(左の棒のラベルから順に記載)
+                    <% for i in 0..4 %>
+                      '<%= 6-i %>days ago',
+                    <% end %>
+                      'yesterday',
+                      'today'
+                  ],
+                  datasets: [{
+                      label: 'books', //凡例の命名
+                      data: [ //表示するデータを選択(左の棒の値から順に記載)
+                        <% for i in 0..6 do %>
+                          <%= @books.created_day_before(6-i).count %>,
+                        <% end %>
+                      ],
+                      backgroundColor: 'rgba(255, 99, 132, 1)', //棒の色
+                      borderColor: 'rgba(255, 99, 132, 1)', //棒の枠の色
+                      borderWidth: 1 //棒の枠の幅
+                  }]
+              },
+              options: {
+                  scales: {
+                      y: { //y軸について
+                          beginAtZero: true //下限を0にする設定
+                      }
+                  }
+              }
+          });
+        </script>
       </div>
     </div>
   </div>
