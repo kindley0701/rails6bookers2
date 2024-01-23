@@ -1,0 +1,27 @@
+<table class='table'>
+  <% messages.each do |message| %>
+    <% if message.user_id == user.id %>
+    <tr>
+      <td>
+        <%= image_tag message.user.get_profile_image, size: '50x50' %><br>
+        <%= message.user.name %>
+      </td>
+      <td><%= message.created_at.strftime('%Y.%m.%d.%H:%M') %></td>
+      <td><%= message.body %></td>
+      <td colspan="3"></td>
+    </tr>
+    <% else %>
+      <tr>
+        <td colspan="3"></td>
+        <td><%= message.body %></td>
+        <td><%= message.created_at.strftime('%Y.%m.%d.%H:%M') %></td>
+        <td>
+          <%= image_tag message.user.get_profile_image,size: '50x50' %><br>
+          <%= message.user.name %>
+        </td>
+
+
+      </tr>
+    <% end %>
+  <% end %>
+</table>

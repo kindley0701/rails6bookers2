@@ -1,0 +1,2 @@
+$('.message-table').html("<%= j(render 'table', messages: @messages, user: @user) %>")
+$('.message-form').html("<%= j(render 'form', message: Message.new, room: @room) %>")
