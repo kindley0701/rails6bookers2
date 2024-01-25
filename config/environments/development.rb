@@ -34,9 +34,21 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  # config.action_mailer.raise_delivery_errors = false
 
   config.action_mailer.perform_caching = false
+
+  config.action_mailer.raise_delivery_errors = true  #メール送信失敗時にエラーを表示する
+  config.action_mailer.delivery_method = :smtp #メールの送信方法をSMTPに設定
+  config.action_mailer.smtp_settings = { #SMTPの詳細設定
+    port:                 587,  #port番号の指定
+    address:              'smtp.gmail.com',  #サーバーのホスト名の設定
+    domain:               'gmail.com',  #HELOドメイン
+    user_name:            ENV['SEND_MAIL'], #送信に使用するGmailアカウント
+    password:             ENV['GMAIL_SPECIFIC_PASSWORD'], #送信に使用するGmailパスワード
+    authentication:       'login', #認証方法の設定
+    enable_starttls_auto: true #TLS認証を使用するか
+  }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
