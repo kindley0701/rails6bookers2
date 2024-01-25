@@ -14,3 +14,13 @@ Book投稿時に五段階評価できる
 本の並び替えができる．
 ・並び替え方法の選択肢の表示：books/index
 ・新着順と評価順の並び替え：books#index
+
+# 課題9d
+## タグ機能
+### 要件と設計
+本に１つのタグをつけることができる
+・投稿時のフォームにタグを追加：books/_form
+・タグ検索
+  -文字列での検索：header
+  -タグを選択して検索：books/_index，books/show
+  -検索結果表示：search#search，search/search
