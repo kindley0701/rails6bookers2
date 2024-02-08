@@ -23,11 +23,11 @@ class BooksController < ApplicationController
       }
     @book = Book.new
     if params[:sort] == 'newer'
-      @books = Book.order(created_at: 'DESC')
+      @books = Book.order(created_at: 'DESC').page(params[:page])
     elsif params[:sort] == 'higher'
-      @books = Book.order(rate: 'DESC')
+      @books = Book.order(rate: 'DESC').page(params[:page])
     else
-      @books = Book.all
+      @books = Book.all.page(params[:page])
     end
   end
 

@@ -13,6 +13,7 @@
       ｜
       <%= link_to '評価の高い順', books_path(sort: 'higher') %>
       <%= render 'index', books: @books%>
+      <%= paginate @books %>
     </div>
   </div>
 </div>
