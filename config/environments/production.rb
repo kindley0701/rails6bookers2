@@ -66,13 +66,13 @@ Rails.application.configure do
 
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
-  if Rails.application.credentials.gmail
+  if credentials = Rails.application.try(:credentials) and credentials[:gmail].present?
     config.action_mailer.smtp_settings = {
       port:                 587,
       address:              "smtp.gmail.com",
       domain:               "gmail.com",
-      user_name:            Rails.application.credentials.gmail[:sender],
-      password:             Rails.application.credentials.gmail[:password],
+      user_name:            credentials[:gmail][:sender],
+      password:             credentials[:gmail][:password],
       authentication:       "login",
       enable_starttls_auto: true
     }
