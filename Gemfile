@@ -74,3 +74,9 @@ gem 'dotenv-rails'
 #   gem 'mysql2'
 # end
 
+
+gem "dockerfile-rails", ">= 1.7", :group => :development
+
+gem "pg", "~> 1.5"
+
+gem "aws-sdk-s3", "~> 1.190", :require => false
