@@ -63,6 +63,8 @@ RUN bundle exec bootsnap precompile app/ lib/
 # Adjust binfiles to be executable on Linux
 RUN chmod +x bin/*
 
+ENV NODE_OPTIONS=--openssl-legacy-provider
+
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
 RUN SECRET_KEY_BASE=DUMMY ./bin/rails assets:precompile
 
